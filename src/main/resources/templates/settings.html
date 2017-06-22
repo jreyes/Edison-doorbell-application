@@ -1,0 +1,138 @@
+<!doctype html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <base href="/"/>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>asm</title>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"/>
+
+    <style>
+        body {
+            min-height: 75rem;
+            padding-top: 4.5rem;
+        }
+
+        .card {
+            width: 30%;
+        }
+    </style>
+
+</head>
+<body>
+
+<nav class="navbar navbar-inverse fixed-top bg-primary bg-faded">
+    <h1 class="navbar-brand mb-0">Edison Doorbell</h1>
+</nav>
+<div class="container-fluid grid">
+    <div class="card">
+        <h4 class="card-header">Google Settings</h4>
+        <div class="card-block">
+            <form action="#"
+                  th:action="@{/configuration/google}"
+                  th:object="${configuration}"
+                  method="post"
+                  class="col s12">
+                <div class="form-group">
+                    <label for="google_client_id">Client ID</label>
+                    <input class="form-control"
+                           type="text"
+                           id="google_client_id"
+                           th:field="*{googleClientId}"/>
+                </div>
+                <div class="form-group">
+                    <label for="google_client_secret">Client Secret</label>
+                    <input class="form-control"
+                           type="text"
+                           id="google_client_secret"
+                           th:field="*{googleClientSecret}"/>
+                </div>
+                <div class="form-group">
+                    <label for="google_redirect_url">Redirect URL</label>
+                    <input class="form-control"
+                           type="text"
+                           id="google_redirect_url"
+                           th:field="*{googleRedirectUrl}"/>
+                </div>
+                <div class="form-group">
+                    <label for="from_email">From Email</label>
+                    <input class="form-control"
+                           type="email"
+                           id="from_email"
+                           th:field="*{fromEmail}"/>
+                </div>
+                <div class="form-group">
+                    <label for="to_email">To Email</label>
+                    <input class="form-control"
+                           type="email"
+                           id="to_email"
+                           th:field="*{toEmail}"/>
+                </div>
+                <div class="form-group">
+                    <label for="to_email">Default Video Duration (minutes)</label>
+                    <input class="form-control col-3"
+                           type="number"
+                           id="video_duration"
+                           th:field="*{videoDuration}"/>
+                </div>
+                <a href="/oauth/google" class="btn btn-success">Connect</a>
+                <span style="width: 100%"></span>
+                <button class="btn btn-primary">Update</button>
+            </form>
+        </div>
+    </div>
+    <div class="card">
+        <h4 class="card-header">Twilio Settings</h4>
+        <div class="card-block">
+            <form action="#"
+                  th:action="@{/configuration/twilio}"
+                  th:object="${configuration}"
+                  method="post"
+                  class="col s12">
+                <div class="form-group">
+                    <label for="twilio_account_sid">Account SID</label>
+                    <input class="form-control"
+                           type="text"
+                           id="twilio_account_sid"
+                           th:field="*{twilioAccountSid}"/>
+                </div>
+                <div class="form-group">
+                    <label for="twilio_auth_token">Auth Token</label>
+                    <input class="form-control"
+                           type="text"
+                           id="twilio_auth_token"
+                           th:field="*{twilioAuthToken}"/>
+                </div>
+                <div class="form-group">
+                    <label for="from_phone_number">From Phone Number</label>
+                    <input class="form-control"
+                           type="tel"
+                           id="from_phone_number"
+                           th:field="*{fromPhoneNumber}"/>
+                </div>
+                <div class="form-group">
+                    <label for="to_phone_number">To Phone Number</label>
+                    <input class="form-control"
+                           type="tel"
+                           id="to_phone_number"
+                           th:field="*{toPhoneNumber}"/>
+                </div>
+                <button class="btn btn-primary">Update</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+<script src="https://unpkg.com/packery@2/dist/packery.pkgd.min.js"></script>
+<script>
+    $('.grid').packery({itemSelector: '.card', gutter: 10});
+</script>
+
+</body>
+</html>
